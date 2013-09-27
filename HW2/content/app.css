@@ -24,7 +24,7 @@ section {
 	clear: both;
 }
 
-.letter {
+p:first-letter {
 	color: #faf;
 	font-size: 200%;
     font-weight: bold;
