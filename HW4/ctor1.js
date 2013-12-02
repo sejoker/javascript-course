@@ -1,10 +1,5 @@
 var Person = function(args){
-	var i,
-		propNames = Object.getOwnPropertyNames(args);
-
-	for( i = 0; i < propNames.length; i += 1 ){
-		this[propNames[i]] = args[propNames[i]];		
-	}
+	return Object.create(args);
 };
 
 var p = new Person({
