@@ -5,10 +5,10 @@ var Person = function(args){
 		fn = function(value){
 			var field = value;
 			return {
-						getter: function(){
+						getFunc: function(){
 							return field;
 						},
-						setter: function(newValue){
+						setFunc: function(newValue){
 							field = newValue
 						}
 					};
@@ -18,11 +18,11 @@ var Person = function(args){
 		var propName = propNames[i];
 		if (typeof args[propName] !== 'function'){			
 			var fieldWithCapital = propName.substr(0, 1).toUpperCase() + propName.substr(1), 
-				getter = 'get' + fieldWithCapital,
-				setter = 'set' + fieldWithCapital,
-				property = fn(args[propName]);
-			this[getter] = property.getter;
-			this[setter] = property.setter;
+				getterName = 'get' + fieldWithCapital,
+				setterName = 'set' + fieldWithCapital,
+				propertyWrapper = fn(args[propName]);
+			this[getterName] = propertyWrapper.getFunc;
+			this[setterName] = propertyWrapper.setFunc;
 		}
 		else {
 			this[propName] = function() { return args[propName].call(args); }
